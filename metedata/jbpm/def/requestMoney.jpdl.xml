@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<process name="requestMoney" xmlns="http://jbpm.org/4.0/jpdl">
+   <start g="85,26,26,23" name="开始">
+      <transition g="-81,-8" name="开始填写表单" to="填写请款单"/>
+   </start>
+   <task g="63,125,92,52" name="填写请款单">
+      <transition g="216,182:-26,6" name="提交审批" to="经理审批"/>
+   </task>
+   <task g="279,121,92,52" name="经理审批">
+      <transition g="215,117:-20,-19" name="驳回请款" to="填写请款单"/>
+      <transition g="-60,-11" name="审批通过" to="财务处理"/>
+   </task>
+   <task g="281,258,92,52" name="财务处理">
+      <transition g="-29,-18" name="返回请款人" to="查看请款结果"/>
+   </task>
+   <task g="62,258,92,52" name="查看请款结果">
+      <transition g="-47,-17" name="转至结束" to="结束"/>
+   </task>
+   <end g="84,356,48,48" name="结束"/>
+</process>

@@ -1,0 +1,165 @@
+[{
+	layout : 'column',
+	margins : '0',
+	labelHeight: 40,
+	items : [{
+				columnWidth : .5,
+				layout : 'form',
+				items : [{
+					xtype : 'textfield',
+					fieldLabel : '出差目的',
+					width : 300,
+					name : 'aim',
+					allowBlank:false,
+					value : '${aim}'
+				}]
+			}, {
+				columnWidth : .5,
+				layout : 'form',
+				items : [{
+					xtype : 'datefield',
+					fieldLabel : '申请日期',
+					format : 'Y-m-d',
+					allowBlank:false,
+					name : 'applyDate',
+					#if (! $applyDate || $applyDate=="")
+					value:'$dateTool.get("yyyy-MM-dd")'
+					#else
+					value : '$dateTool.format("yyyy-MM-dd",$applyDate)'
+					#end
+				}]
+			}]
+},
+{
+	xtype : 'fieldset',
+	title : '出差人员信息',
+	autoHeight : true,
+	layout : 'column',
+	items : [{
+				columnWidth : .5,
+				layout : 'form',
+				items : [{
+							xtype : 'textfield',
+							fieldLabel : '姓名',
+							width : 300,
+							name : 'fullname',
+							#if ($fullname=='')
+							value : '${currentUser.fullname}'
+							#else
+							value:'${fullname}'
+							#end
+						}, {
+							fieldLabel : '手机',
+							xtype : 'textfield',
+							width : 300,
+							name : 'mobile',
+							allowBlank:false,
+							#if ($mobile=='')
+							value : '${currentUser.mobile}'
+							#else
+							value:'${mobile}'
+							#end
+						}]
+			}, {
+				columnWidth : .5,
+				layout : 'form',
+				items : [{
+							fieldLabel : '邮箱',
+							width : 300,
+							xtype : 'textfield',
+							name : 'email',
+							vtype : 'email',
+							#if ($email=='')
+								value : '${currentUser.email}'	
+							#else
+								value:'${email}'
+							#end
+						}]
+			}]
+},
+{
+	xtype : 'fieldset',
+	title : '行程',
+	collapsible : true,
+	layout : 'column',
+	autoHeight : true,
+	items : [ 
+			{
+				columnWidth : .5,
+				margins : '0',
+				layout : 'form',
+				items : [{
+							xtype : 'textfield',
+							fieldLabel : '出发地',
+							width : 200,
+							name:'startLocation',
+							allowBlank:false,
+							value:'${startLocation}'
+						}, {
+								xtype : 'datetimefield',
+								fieldLabel : '启程时间',
+								format : 'Y-m-d H:i:s',
+								width:220,
+								allowBlank:false,
+								name:'startDate',
+								value:'$dateTool.format("yyyy-MM-dd HH:mm:ss",$startDate)'
+						}, {
+											fieldLabel : '返回日期',
+											xtype : 'datetimefield',
+											format : 'Y-m-d H:i:s',
+											width:220,
+											name:'returnDate',
+											value:'$dateTool.format("yyyy-MM-dd HH:mm:ss",$returnDate)'
+						}]
+			},
+			{
+				columnWidth : .5,
+				layout : 'form',
+				items : [{
+							xtype : 'textfield',
+							fieldLabel : '目的地',
+							allowBlank:false,
+							width : 200,
+							name:'destLocation',
+							value:'${destLocation}'
+						}, {
+							xtype : 'checkbox',
+							fieldLabel : '包括旅馆',
+							name : 'includeHotel',
+							#if ($includeHotel && $includeHotel==1)
+							checked:true,
+							#end
+							inputValue:1
+						}, {
+							xtype : 'checkbox',
+							fieldLabel : '包括汽车租赁',
+							#if ($includeHireCar && $includeHireCar==1)
+							checked:true,
+							#end
+							name : 'includeHireCar',
+							inputValue:1
+						},
+						{
+							xtype : 'checkbox',
+							fieldLabel : '需要借款',
+							#if ($needLoanMoney && $needLoanMoney==1)
+							checked:true,
+							#end
+							name : 'needLoanMoney',
+							inputValue:1
+						}
+						]
+			}]
+},{
+	xtype : 'fieldset',
+	layout : 'column',
+	margins : '0 0 0 0',
+	title : '备注',
+	items : {
+		columnWidth : .90,
+		xtype : 'textarea',
+		name : 'note',
+		value:'${note}'
+	}
+  }
+]

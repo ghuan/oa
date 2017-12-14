@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fields>
+	<field name="approvalOption" label="是否同意" type="bool"/>
+	<field name="opinion" label="审批意见" type="varchar" length="256"/>
+</fields>

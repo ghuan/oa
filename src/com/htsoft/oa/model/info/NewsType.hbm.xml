@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.htsoft.oa.model.info">
+  <class name="NewsType" table="news_type">
+  	<id name="typeId" type="java.lang.Long">
+  		<generator class="native"></generator>
+  	</id>
+  	<property name="typeName" not-null="true"></property>
+  	<property name="sn" type="java.lang.Short"/>
+	<!-- 
+  	<set name="news" >
+           <key column="typeId"/>
+           <one-to-many class="News" />
+    </set>
+	 -->
+  </class>
+</hibernate-mapping>

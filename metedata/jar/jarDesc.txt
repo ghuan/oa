@@ -1,0 +1,10 @@
+javamail
+
+dsn.jar
+imap.jar
+mailapi.jar
+pop3.jar
+smtp.jar
+
+mail.jar
+activation.jar

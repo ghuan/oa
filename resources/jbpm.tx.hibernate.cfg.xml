@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jbpm-configuration>
+  <process-engine-context>
+    <command-service>
+      <retry-interceptor />
+      <environment-interceptor />
+      <spring-transaction-interceptor />
+    </command-service>
+  </process-engine-context>
+  <transaction-context>
+    <hibernate-session current="true"/>
+  </transaction-context>
+</jbpm-configuration>

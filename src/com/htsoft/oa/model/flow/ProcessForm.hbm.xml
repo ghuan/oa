@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.htsoft.oa.model.flow.ProcessForm"
+        table="process_form"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="formId"
+            column="formId"
+            type="java.lang.Long"
+            length="19"
+        >
+            <generator class="native"/>
+        </id>
+         <property
+            name="activityName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="activityName"
+            length="128"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="createtime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="createtime"
+            length="19"
+            not-null="true"
+            unique="false"
+        />
+        <property 
+        	name="sn"
+        	type="java.lang.Integer"
+        	update="true"
+        	insert="true"
+        	access="property"
+        	column="sn"
+        	length="11"
+			not-null="true"
+			unique="false">
+        </property>
+        
+        <property 
+        	name="creatorId"
+        	type="java.lang.Long"
+        	update="true"
+        	insert="true"
+        	access="property"
+        	column="creatorId"
+        	length="19"
+			not-null="false"
+			unique="false">
+        </property>
+        
+        <property 
+        	name="creatorName"
+        	type="java.lang.String"
+        	update="true"
+        	insert="true"
+        	access="property"
+        	column="creatorName"
+        	length="64"
+			not-null="false"
+			unique="false">
+        </property>
+        
+     <!-- imported bi-directional many-to-one association to ProcessRun -->
+		<many-to-one
+			name="processRun"
+			class="com.htsoft.oa.model.flow.ProcessRun"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="runId" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to FormData -->
+	<set name="formDatas"
+	     table="form_data"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update,delete-orphan"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="formId"/>
+		</key>
+		<one-to-many
+			class="com.htsoft.oa.model.flow.FormData"
+		/>
+	</set>
+ <!-- exported bi-directional one-to-many association to FormFile -->
+	<set name="formFiles" table="form_file" cascade="save-update,delete-orphan" inverse="false" lazy="true">
+	       	<key column="formId"/>
+	       	<many-to-many fetch="join" class="com.htsoft.oa.model.system.FileAttach" column="fileId"/>
+    </set>
+    </class>
+</hibernate-mapping>

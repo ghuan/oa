@@ -1,0 +1,10 @@
+[
+	{
+		fieldLabel:'审批',
+		xtype : 'textarea',
+		name : 'fjnote',
+		value:'',
+		anchor:'90%',
+		height:150
+	}
+]

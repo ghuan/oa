@@ -1,0 +1,10 @@
+[
+	{
+		fieldLabel:'审批',
+		xtype : 'textarea',
+		name : 'zdnote',
+		value:'',
+		anchor:'90%',
+		height:150
+	}
+]

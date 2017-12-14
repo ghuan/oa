@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.htsoft.oa.model.flow.ProcessRun"
+        table="process_run"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="runId"
+            column="runId"
+            type="java.lang.Long"
+            length="19"
+        >
+            <generator class="native"/>
+        </id>
+         <property
+            name="subject"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="subject"
+            length="256"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="creator"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="creator"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="createtime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="createtime"
+            length="19"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="piId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="piId"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="runStatus"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="runStatus"
+            length="6"
+            not-null="true"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to AppUser -->
+		<many-to-one
+			name="appUser"
+			class="com.htsoft.oa.model.system.AppUser"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="userId" />
+		</many-to-one>
+		<many-to-one
+			name="proDefinition"
+			class="com.htsoft.oa.model.flow.ProDefinition"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="defId" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to ProcessForm -->
+	<set name="processForms"
+	     table="process_form"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update,delete-orphan"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="runId"/>
+		</key>
+		<one-to-many
+			class="com.htsoft.oa.model.flow.ProcessForm"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

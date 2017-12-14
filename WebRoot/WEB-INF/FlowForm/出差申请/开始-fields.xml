@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fields>
+	<field name="aim" label="出差目的" type="varchar" length="32"/>
+	<field name="applyDate" label="申请日期" type="date"/>
+	<field name="fullname" label="姓名" type="varchar" length="32"/>
+	<field name="email" label="邮箱" type="varchar" length="128"/>
+	<field name="mobile" label="手机" type="varchar" length="32"/>
+	<field name="startLocation" label="出发地" type="varchar" length="32"/>
+	<field name="startDate" label="启程时间" type="date" length="32"/>
+	<field name="returnDate" label="返回时间" type="date" length="32"/>
+	<field name="destLocation" label="目的地" type="varchar" length="128"/>
+	<field name="includeHotel" label="包括旅馆" type="bool"/>
+	<field name="includeHireCar" label="包括汽车租赁" type="bool"/>
+	<field name="needLoanMoney" label="需要借款" type="bool"/>
+	<field name="note" label="备注" type="varchar" length="200"/>
+</fields>

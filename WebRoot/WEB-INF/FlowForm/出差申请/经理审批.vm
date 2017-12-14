@@ -1,0 +1,39 @@
+[{
+	layout : 'form',
+	margins : '0',
+	labelHeight: 40,
+	items : [
+			{
+				layout:'column',
+				items:[
+					{
+						columnWidth:.3,
+						layout:'form',
+						items:{
+							xtype:'radio',
+							fieldLabel:'同意',
+							name:'approvalOption',
+							value:'1',
+							checked:true,
+						}
+					},
+					{
+						columnWidth:.3,
+						layout:'form',
+						items:{
+							xtype:'radio',
+							fieldLabel:'拒绝',
+							name:'approvalOption',
+							value:'0'
+						}
+					}
+				]
+			},
+			{
+				xtype:'textarea',
+				fieldLabel:'审批意见',
+				width:380,
+				name:'opinion',
+				height:150
+			}]
+}]

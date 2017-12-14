@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="test" key="depKey" xmlns="http://jbpm.org/4.0/jpdl">
+   <start name="start1" g="146,46,48,48">
+      <transition name="to task1" to="task1" g="-53,-17"/>
+   </start>
+   <end name="end1" g="152,283,48,48"/>
+   <task name="task1" g="125,165,92,52" candidate-groups="user1 role@bmsoft.com">
+      <transition name="to end1" to="end1" g="-47,-17"/>
+   </task>
+</process>

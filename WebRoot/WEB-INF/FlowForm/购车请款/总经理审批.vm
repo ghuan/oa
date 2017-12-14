@@ -1,0 +1,9 @@
+[
+	{
+		fieldLabel:'审批意见',
+		xtype:'textarea',
+		name:'managerOptions',
+		allowBlank:false,
+		anchor:'90%'
+	}
+]

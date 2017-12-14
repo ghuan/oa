@@ -1,0 +1,39 @@
+﻿[{
+	   xtype : 'fieldset',
+	   title : '文件信息',
+	   autoHeight : true,
+	   layout : 'column',
+	   items : [{
+			columnWidth : .5,
+			layout : 'form',
+			items : [{
+				 xtype : 'textfield',
+				fieldLabel : '文件编号',
+				width : 300,
+				name : 'fileNumber',
+				#if ($fileNumber=='')
+				value : ''
+				#else
+				value:'${fileNumber}'
+				#end
+				},{
+							fieldLabel : '文件名称',
+							xtype : 'textfield',
+							width : 300,
+							name : 'fileName',
+							allowBlank:false,
+							#if ($fileName=='')
+							value : ''
+							#else
+							value:'${fileName}'
+							#end
+				},{
+		                   fieldLabel:'文件内容',
+		                   xtype : 'textarea',
+		                   name : 'note',
+		                   value:'${note}',
+		                   anchor:'100%',
+		                   height:150 
+		    }]
+        }]
+ }]

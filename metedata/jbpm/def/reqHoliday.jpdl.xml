@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="reqHoliday" xmlns="http://jbpm.org/4.0/jpdl">
+   <start name="start1" g="153,50,48,48">
+      <transition name="to task1" to="task1" g="-53,-17"/>
+   </start>
+   <task name="task1" g="131,159,92,52">
+      <transition name="to task2" to="task2" g="297,142:-53,-17"/>
+   </task>
+   <task name="task2" g="328,194,92,52">
+      <transition name="to task3" to="task3" g="-51,-10"/>
+      <transition name="to task1" to="task1" g="-19,-1"/>
+   </task>
+   <task name="task3" g="141,281,92,52">
+      <transition name="to end1" to="end1" g="-47,-17"/>
+   </task>
+   <end name="end1" g="164,383,48,48"/>
+</process>

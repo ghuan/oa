@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GBK"?>
+<process name="FreeFlow" xmlns="http://jbpm.org/4.0/jpdl">
+   <start g="167,33,48,48" name="开始">
+      <transition g="-47,-17" name="提交至审批" to="审批"/>
+   </start>
+   <task g="144,131,92,52" name="审批">
+      <transition g="-95,-17" name="转回申请人" to="查看审批结果"/>
+      <transition g="-47,-17" name="取消" to="取消"/>
+   </task>
+   <task g="142,228,100,52" name="查看审批结果">
+      <transition g="-47,-17" name="结束" to="结束"/>
+   </task>
+   <end g="169,323,48,48" name="结束"/>
+   <end-cancel g="339,132,48,48" name="取消"/>
+</process>

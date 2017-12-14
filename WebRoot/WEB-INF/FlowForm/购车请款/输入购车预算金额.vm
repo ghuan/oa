@@ -1,0 +1,24 @@
+[
+	{
+		fieldLabel:'预购车日期',
+		xtype:'datefield',
+		allowBlank:false,
+		name:'reserveDate',
+		format:'Y-m-d',
+		value:'$dateTool.format("yyyy-MM-dd",$reserveDate)'
+	},
+	{
+		fieldLabel:'预算金额(RBM)',
+		xtype:'numberfield',
+		allowBlank:false,
+		name:'reqAmount',
+		value:'${reqAmount}'
+	},
+	{
+		fieldLabel:'购车描述',
+		xtype:'fckeditor',
+		height:300,
+		name:'desc',
+		value:'${desc}'
+	}
+]

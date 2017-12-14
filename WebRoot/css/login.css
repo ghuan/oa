@@ -1,0 +1,33 @@
+body {
+	margin: 0 ;
+	padding: 0;
+	background-color:#EEF2F6;
+}
+
+
+.login-icon{
+	background: url(../images/login.png) no-repeat !important;
+}
+
+.btn-login{
+	background: url(../images/blogin.png) no-repeat !important;
+}
+
+.btn-login-reset{
+	background: url(../images/login-reset.png) no-repeat !important;
+}
+
+.text-lock{
+	background: url('../images/login/lock.gif') no-repeat !important ;
+	padding:2px 0px 2px 18px;
+}
+
+.text-code{
+	background: url('../images/login/code.gif') no-repeat !important ;
+	padding:2px 0px 2px 18px;
+}
+
+.text-user{
+	background: url('../images/login/user.png') no-repeat !important ;
+	padding:2px 0px 2px 18px;
+}

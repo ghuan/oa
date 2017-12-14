@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:b="http://www.springframework.org/schema/beans"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.4.xsd">	
+    
+    <http auto-config="true" access-denied-page="/403.jsp" lowercase-comparisons="true" 
+     	access-decision-manager-ref="accessDecisionManager">
+        <intercept-url pattern="/images/**" filters="none"/>
+        <intercept-url pattern="/css/**" filters="none"/>
+        <intercept-url pattern="/js/**" filters="none"/>
+        <intercept-url pattern="/403*" filters="none"/>
+        <intercept-url pattern="/404*" filters="none"/>
+        <intercept-url pattern="/500*" filters="none"/> 
+        <intercept-url pattern="/ext3/**" filters="none"/>
+        <intercept-url pattern="/fckeditor/**" filters="none"/>  
+        <form-login default-target-url="/index.jsp" login-page="/login.jsp" authentication-failure-url="/login.jsp?error=true" login-processing-url="/j_security_check" />
+        <logout logout-url="/j_logout.do" logout-success-url="/login.jsp"/> 
+   		<remember-me key="RememberAppUser"/>
+    </http>
+	
+	 <b:bean id="accessDecisionManager" class="org.springframework.security.vote.AffirmativeBased">
+	 	<b:property name="allowIfAllAbstainDecisions" value="false"/>
+        <b:property name="decisionVoters">
+            <b:list>
+                <b:bean class="org.springframework.security.vote.RoleVoter">
+                    <b:property name="rolePrefix" value="" />
+                </b:bean>
+                <b:bean class="org.springframework.security.vote.AuthenticatedVoter" />
+            </b:list>
+        </b:property>
+    </b:bean>
+
+	<authentication-manager alias="authenticationManager"/>
+		
+    <authentication-provider user-service-ref="appUserDao">
+    	<password-encoder hash="sha-256" base64="true"/>
+    </authentication-provider>
+
+    <b:bean id="securityInterceptorFilter" class="com.htsoft.core.web.filter.SecurityInterceptorFilter" >
+		<custom-filter after="FILTER_SECURITY_INTERCEPTOR" />
+		<b:property name="securityDataSource" ref="securityDataSource"/>
+	</b:bean>
+	
+	<b:bean id="securityDataSource" class="com.htsoft.core.security.SecurityDataSource">
+		<b:property name="appRoleService" ref="appRoleService"/>
+		<b:property name="anonymousUrls">
+			<b:set>
+				<b:value>/login.do</b:value>
+				<b:value>/check.do</b:value>
+			</b:set>
+		</b:property>
+		<b:property name="publicUrls">
+			<b:set>
+				<b:value>/modelsMenu.do</b:value>
+				<b:value>/itemsMenu.do</b:value>
+				<b:value>/file-upload</b:value>
+				<b:value>/index.jsp</b:value>
+				<b:value>/communicate/listPhoneBook.do</b:value>
+				<b:value>/communicate/listPhoneGroup.do</b:value>
+				<b:value>/communicate/savePhoneGroup.do</b:value>
+				<b:value>/communicate/multiDelPhoneGroup.do</b:value>
+				<b:value>/communicate/movePhoneGroup.do</b:value>
+				<b:value>/communicate/savePhoneBook.do</b:value>
+				<b:value>/communicate/getPhoneBook.do</b:value>
+				<b:value>/communicate/sharePhoneBook.do</b:value>
+				<b:value>/communicate/detailPhoneBook.do</b:value>				
+				<b:value>/communicate/saveMailFolder.do</b:value>
+				<b:value>/communicate/getMailFolder.do</b:value>
+				<b:value>/communicate/saveMail.do</b:value>
+				<b:value>/communicate/getMail.do</b:value>
+				<b:value>/communicate/optMail.do</b:value>
+				<b:value>/communicate/attachMail.do</b:value>
+				<b:value>/communicate/listMail.do</b:value>
+				<b:value>/communicate/multiDelMail.do</b:value>
+				<b:value>/communicate/moveMail.do</b:value>
+				<b:value>/communicate/listMailFolder.do</b:value>
+				<b:value>/communicate/removeMailFolder.do</b:value>
+				<b:value>/communicate/searchMail.do</b:value>
+
+				<b:value>/info/detailInMessage.do</b:value>
+				<b:value>/info/sendShortMessage.do</b:value>
+				<b:value>/info/listShortMessage.do</b:value>
+				<b:value>/info/listInMessage.do</b:value>
+				<b:value>/info/replyInMessage.do</b:value>
+				<b:value>/info/knowInMessage.do</b:value>
+				<b:value>/info/multiRemoveInMessage.do</b:value>
+				<b:value>/info/readInMessage.do</b:value>
+				<b:value>/info/countInMessage.do</b:value>
+				<b:value>/info/showNotice.do</b:value>
+				<b:value>/info/showNews.do</b:value>
+				<b:value>/info/showShortMessage.do</b:value>
+				<b:value>/info/listNews.do</b:value>
+				<b:value>/info/getNews.do</b:value>
+				<b:value>/info/listNotice.do</b:value>
+				<b:value>/info/getNotice.do</b:value>
+				<b:value>/info/searchNotice.do</b:value>
+				<b:value>/info/searchNews.do</b:value>
+				<b:value>/info/listNewsComment.do</b:value>
+				<b:value>/info/saveNewsComment.do</b:value>
+				
+				<b:value>/document/saveDocFolder.do</b:value>
+				<b:value>/document/moveDocFolder.do</b:value>
+				<b:value>/document/getDocFolder.do</b:value>
+				<b:value>/document/selectDocFolder.do</b:value>
+				<b:value>/document/listDocFolder.do</b:value>
+				<b:value>/document/saveDocument.do</b:value>
+				<b:value>/document/getDocument.do</b:value>
+				<b:value>/document/shareDocument.do</b:value>
+				<b:value>/document/removeDocFolder</b:value>
+				<b:value>/document/listDocument.do</b:value>
+				<b:value>/document/shareListDocument.do</b:value>
+				<b:value>/document/detailDocument.do</b:value>
+				<b:value>/document/treeDocFolder.do</b:value>
+				<b:value>/document/publicListDocument.do</b:value>
+				<b:value>/document/rightDocument.do</b:value>
+				<b:value>/document/publicDetailDocument.do</b:value>
+				<b:value>/document/saveDocument.do</b:value>
+				<b:value>/document/searchDocument.do</b:value>
+				
+				<b:value>/task/saveAppointment.do</b:value>
+				<b:value>/task/getAppointment.do</b:value>
+				<b:value>/task/listAppointment.do</b:value>
+				<b:value>/task/multiDelAppointment.do</b:value>
+				<b:value>/task/saveCalendarPlan.do</b:value>
+				<b:value>/task/getCalendarPlan.do</b:value>
+				<b:value>/task/listCalendarPlan.do</b:value>
+				<b:value>/task/multiDelCalendarPlan.do</b:value>
+				<b:value>/task/todayCalendarPlan.do</b:value>
+				<b:value>/task/myCalendarPlan.do</b:value>
+				<b:value>/task/showCalendarPlan.do</b:value>
+				<b:value>/task/showAppointment.do</b:value>
+				<b:value>/task/listWorkPlan.do</b:value>
+				<b:value>/task/comboPlanType.do</b:value>
+				<b:value>/task/saveWorkPlan.do</b:value>
+				<b:value>/task/getWorkPlan.do</b:value>
+				<b:value>/task/multiDelWorkPlan.do</b:value>
+				<b:value>/task/personalWorkPlan.do</b:value>
+				<b:value>/task/departmentWorkPlan.do</b:value>
+				<b:value>/task/showWorkPlan.do</b:value>
+				
+				<b:value>/fileDetail.do</b:value>
+				<b:value>/personal/todayDutyRegister.do</b:value>
+				<b:value>/personal/listErrandsRegister.do</b:value>
+				<b:value>/personal/signInDutyRegister.do</b:value>
+				<b:value>/personal/signOffDutyRegister.do</b:value>
+				<b:value>/personal/multiDelErrandsRegister.do</b:value>
+				<b:value>/personal/saveErrandsRegister.do</b:value>
+				<b:value>/personal/getErrandsRegister.do</b:value>
+				<b:value>/personal/personDutyRegister.do</b:value>
+				
+				<b:value>/system/listDiary.do</b:value>
+				<b:value>/system/multiDelDiary.do</b:value>
+				<b:value>/system/saveDiary.do</b:value>
+				<b:value>/system/getDiary.do</b:value>
+				<b:value>/system/treeAppRole.do</b:value>
+				<b:value>/system/listDepartment.do</b:value>
+				<b:value>/system/treeAppRole.do</b:value>
+				<b:value>/system/getCurrentAppUser.do</b:value>
+				<b:value>/system/onlineAppUser.do</b:value>
+				<b:value>/system/multiDelFileAttach.do</b:value>
+				<b:value>/system/treeRegion.do</b:value>
+				<b:value>/system/subAdepartmentAppUser.do</b:value>
+				<b:value>/system/subAroleAppUser.do</b:value>
+				<b:value>/system/onlineAsubAppUser.do</b:value>
+				<b:value>/system/listUserSub.do</b:value>
+				<b:value>/system/multiDelUserSub.do</b:value>
+				<b:value>/system/saveUserSub.do</b:value>
+				<b:value>/system/subUserDiary.do</b:value>
+				<b:value>/system/comboUserSub.do</b:value>
+			    <b:value>/system/getAppUser.do</b:value>
+				<b:value>/system/selectAppUser.do</b:value>
+				<b:value>/system/upUserAppUser.do</b:value>
+				<b:value>/system/resetPasswordAppUser.do</b:value>
+				<b:value>/system/saveAppUser.do</b:value>
+				<b:value>/system/getAppUser.do</b:value>
+				<b:value>/system/checkDiary.do</b:value>
+				<b:value>/system/selectDepartment.do</b:value>
+				<b:value>/system/listAppRole.do</b:value>
+				<b:value>/system/loadDictionary.do</b:value>
+				
+				<b:value>/flow/listTask.do</b:value>
+				<b:value>/flow/listProcessRun.do</b:value>
+				<b:value>/flow/processRunDetail.do</b:value>
+				<b:value>/flow/multiDelProcessRun.do</b:value>
+				<b:value>/flow/transProcessActivity.do</b:value>
+				<b:value>/flow/listProDefinition.do</b:value>
+				<b:value>/flow/nextProcessActivity.do</b:value>
+				<b:value>/flow/changeTask.do</b:value>
+				<b:value>/flow/rootProType.do</b:value>
+				<b:value>/flow/saveProcessActivity.do</b:value>
+				<b:value>/flow/startProcessActivity.do</b:value>
+				<b:value>/flow/getProcessActivity.do</b:value>
+				<b:value>/flow/lockTask.do</b:value>
+				<b:value>/flow/processDetail.do</b:value>
+				<b:value>/flow/unlockTask.do</b:value>
+				
+			</b:set>
+		</b:property>
+	</b:bean>
+</b:beans>

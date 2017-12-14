@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<process key="buyCarFlow" name="buyCarReqMoney" xmlns="http://jbpm.org/4.0/jpdl">
+   <start g="196,22,48,48" name="开始">
+      <transition g="-143,-11" name="to 输入购车预算金额" to="输入购车预算金额"/>
+   </start>
+   <task g="153,104,133,52" name="输入购车预算金额">
+      <transition g="-92,-11" name="to 金额条件判断" to="金额条件判断"/>
+   </task>
+   <decision g="197,184,48,48" name="金额条件判断">
+      <transition g="-83,-17" name="金额小于2000" to="副经理审批">
+      	<condition expr="#{reqAmount&lt;2000}"/>
+      </transition>
+      <transition g="-28,-16" name="金额大于2000" to="总经理审批">
+      	<condition expr="#{reqAmount&gt;2000}"/>
+      </transition>
+   </decision>
+   <task g="10,271,98,52" name="副经理审批">
+      <transition g="-47,-17" name="to 取消" to="取消"/>
+      <transition g="-71,-17" name="to 财务审批" to="财务审批"/>
+   </task>
+   <task g="379,264,92,52" name="总经理审批">
+      <transition g="-47,-17" name="to 取消" to="取消"/>
+      <transition g="-71,-17" name="to 财务审批" to="财务审批"/>
+   </task>
+   <task g="172,365,92,52" name="财务审批">
+      <transition g="-47,-17" name="to 取消" to="取消"/>
+      <transition g="-47,-17" name="to 结束" to="结束"/>
+   </task>
+   <end-cancel g="195,272,48,48" name="取消"/>
+   <end g="197,460,48,48" name="结束"/>
+</process>

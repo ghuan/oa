@@ -1,0 +1,27 @@
+## This is a velocity template
+## to generate a model class from an sql table input
+#set ($table = $sqlTable.Table)
+#set ($class = $utility.makeClassName($sqlTable.EntityName))
+#set ($classVar = $utility.makeFirstLetterLowerCase($class))
+#set ($packagePrefix  = $prop.getProperty("packagePrefix"))
+#set ($packageModot  = $prop.getProperty("packageModot"))
+#set ($keyfield = $sqlTable.getPrimaryKey(0).getColname())
+#set ($keytype  = $sqlTable.getPrimaryKey(0).getAttType())
+#set ($keyVar= $utility.makeVarName($keyfield))
+#set ($keyVarUC = $utility.makeFirstLetterUpperCase($keyVar))
+package ${packagePrefix}.oa.dao${packageModot}.impl;
+/*
+ *  广州宏天软件有限公司 JOffice协同办公管理系统   -- http://www.jee-soft.cn
+ *  Copyright (C) 2008-2009 GuangZhou HongTian Software Limited company.
+*/
+import ${packagePrefix}.core.dao.impl.BaseDaoImpl;
+import ${packagePrefix}.oa.dao${packageModot}.${class}Dao;
+import ${packagePrefix}.oa.model${packageModot}.${class};
+
+public class ${class}DaoImpl extends BaseDaoImpl<${class}> implements ${class}Dao{
+
+	public ${class}DaoImpl() {
+		super(${class}.class);
+	}
+
+}

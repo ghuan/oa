@@ -1,0 +1,30 @@
+[
+	{
+		fieldLabel:'快速回复',
+		xtype:'combo',
+		mode : 'local',
+		editable : false,
+		anchor:'90%,90%',
+		triggerAction : 'all',
+		store :['同意','不同意','太多工作要进行，目前不同意请假'],
+		listeners:
+			{
+				select:{
+					fn:function(field,record,index){//select : ( Ext.form.ComboBox combo, Ext.data.Record record, Number index ) 
+						var options=Ext.getCmp('superOption');
+						if(options!=null){
+							options.setValue(field.getValue());
+						}
+					}
+				}
+			}
+	},
+	{
+		fieldLabel:'审批意见',
+		xtype:'textarea',
+		id:'superOption',
+		name:'superOption',
+		allowBlank:false,
+		anchor:'90%'
+	}
+]

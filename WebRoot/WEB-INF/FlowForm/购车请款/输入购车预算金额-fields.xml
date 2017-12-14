@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fields>
+	<field name="reserveDate" label="预购车日期" type="datetime"/>
+	<field name="reqAmount" label="预算金额(RBM)" type="decimal"/>
+	<field name="desc" label="描述" type="text"/>
+</fields>

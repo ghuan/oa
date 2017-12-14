@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.htsoft.oa.model.flow.ProDefinition"
+        table="pro_definition"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="defId"
+            column="defId"
+            type="java.lang.Long"
+            length="19"
+        >
+            <generator class="native"/>
+        </id>
+         <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="name"
+            length="256"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="description"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="description"
+            length="1024"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createtime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="createtime"
+            length="19"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="deployId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="deployId"
+            length="64"
+            not-null="true"
+            unique="false"
+        />
+         <property
+            name="defXml"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="defXml"
+            length="4000"
+            not-null="true"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to ProType -->
+		<many-to-one
+			name="proType"
+			class="com.htsoft.oa.model.flow.ProType"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="typeId" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

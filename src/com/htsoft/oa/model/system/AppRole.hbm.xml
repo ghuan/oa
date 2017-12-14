@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.htsoft.oa.model.system">
+  <class name="AppRole" table="app_role">
+  	<id name="roleId" type="java.lang.Long">
+  		<generator class="native"/>
+  	</id>
+  	<property name="roleName" column="roleName" not-null="true" type="java.lang.String"/>
+  	<property name="roleDesc" column="roleDesc" type="java.lang.String"/>
+  	<property name="status" column="status" type="java.lang.Short"/>
+  	<property name="rights" column="rights" type="java.lang.String" length="2000"/>
+    <property name="isDefaultIn" column="isDefaultIn" type="java.lang.Short" not-null="true"></property>
+    <set name="functions" table="role_fun" cascade="save-update" inverse="false" lazy="true">
+        <key column="roleId"/>
+        <many-to-many fetch="join" class="AppFunction" column="functionId"/>
+    </set>
+    <set name="appUsers" table="user_role" cascade="save-update" inverse="false" lazy="true">
+        <key column="roleId"/>
+        <many-to-many fetch="join" class="AppUser" column="userId"/>
+    </set>
+  </class>
+</hibernate-mapping>

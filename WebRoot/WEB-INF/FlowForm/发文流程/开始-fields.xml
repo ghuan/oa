@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fields>
+	<field name="dateId" label="primaryKey" type="long" isShowed="false" />
+    <field name="fileNumber" label="文件编号" type="varchar" length="32"/>
+    <field name="fileName" label="文件名称" type="varchar" length="32"/>
+	<field name="note" label="文件内容" type="varchar" length="512"/>
+</fields>

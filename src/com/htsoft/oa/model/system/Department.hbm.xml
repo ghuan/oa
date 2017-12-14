@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.htsoft.oa.model.system">
+  <class name="Department" table="department">
+  	<id name="depId" type="java.lang.Long">
+  		<generator class="native"></generator>
+  	</id>
+  	<property name="depName" not-null="true"/>
+  	<property name="depDesc" type="java.lang.String"/>
+  	<property name="depLevel"  type="java.lang.Integer"/>
+  	<property name="parentId" type="java.lang.Long"/>
+  	<property name="path" type="java.lang.String"/> 
+  </class>
+</hibernate-mapping>

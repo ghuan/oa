@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.htsoft.oa.model.hrm.Job"
+        table="job"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="jobId"
+            column="jobId"
+            type="java.lang.Long"
+            length="19"
+        >
+            <generator class="native"/>
+        </id>
+         <property
+            name="jobName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="jobName"
+            length="128"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="memo"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="memo"
+            length="512"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="delFlag"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="delFlag"
+            length="5"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to Department -->
+		<many-to-one
+			name="department"
+			class="com.htsoft.oa.model.system.Department"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="depId" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to EmpProfile -->
+	<set name="empProfiles"
+	     table="emp_profile"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="jobId"/>
+		</key>
+		<one-to-many
+			class="com.htsoft.oa.model.hrm.EmpProfile"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

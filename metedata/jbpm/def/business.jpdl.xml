@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GBK"?>
+<process name="businessReq" xmlns="http://jbpm.org/4.0/jpdl">
+   <start g="58,12,48,48" name="提交出差申请">
+      <transition g="-71,-17" name="to 经理审批" to="经理审批"/>
+   </start>
+   <task g="37,125,92,52" name="经理审批">
+      <transition g="-41,-21" name="有借款" to="总经理审批"/>
+      <transition g="-71,-17" name="无借款" to="归档结束"/>
+   </task>
+   <task g="241,127,92,52" name="总经理审批">
+      <transition g="11,-16" name="to 财务经理审批" to="财务经理审批"/>
+   </task>
+   <task g="242,244,92,52" name="财务经理审批">
+      <transition g="13,-19" name="to 出纳付款" to="出纳付款"/>
+   </task>
+   <task g="242,391,92,52" name="出纳付款">
+      <transition g="-71,-17" name="to 归档结束" to="归档结束"/>
+   </task>
+   <end g="60,394,48,48" name="归档结束"/>
+</process>

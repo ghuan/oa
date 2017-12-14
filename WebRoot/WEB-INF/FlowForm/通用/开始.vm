@@ -1,0 +1,10 @@
+[
+	{
+		fieldLabel:'备注',
+		xtype : 'textarea',
+		name : 'note',
+		value:'${note}',
+		anchor:'90%',
+		height:150
+	}
+]
