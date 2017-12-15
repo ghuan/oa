@@ -3,7 +3,7 @@
 
 框架：strutst2+spring2.5+hibernate3.3+jbpm4.0+javamail+jms
 
-JS框架：extjs
+JS框架：extjs3
 
 数据库：mysql
 
